@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4 text-primary">Employee Dashboard</h1>
+
+<p class="lead">
+    Welcome to SupportHub! Manage your IT support requests from here.
+</p>
+
+<div class="row mt-4">
+
+    <div class="col-md-4">
+        <div class="card text-center shadow">
+            <div class="card-body">
+                <h5 class="card-title">Open Tickets</h5>
+                <h2 class="text-primary">3</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-center shadow">
+            <div class="card-body">
+                <h5 class="card-title">In Progress</h5>
+                <h2 class="text-warning">2</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-center shadow">
+            <div class="card-body">
+                <h5 class="card-title">Closed Tickets</h5>
+                <h2 class="text-success">5</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="mt-5">
+
+    <a href="/create-ticket/" class="btn btn-primary">
+        + Create Ticket
+    </a>
+
+    <a href="/ticket-list/" class="btn btn-outline-primary ms-2">
+        View My Tickets
+    </a>
+
+</div>
+
+<div class="mt-5">
+
+    <h3>Recent Activity</h3>
+
+    <ul class="list-group">
+
+        <li class="list-group-item">
+            Printer Issue - Open
+        </li>
+
+        <li class="list-group-item">
+            Email Problem - In Progress
+        </li>
+
+        <li class="list-group-item">
+            VPN Access - Closed
+        </li>
+
+    </ul>
+
+</div>
+
+{% endblock %}

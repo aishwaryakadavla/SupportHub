@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-8">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white">
+
+                <h3>Create New Support Ticket</h3>
+
+            </div>
+
+            <div class="card-body">
+
+                <form>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Ticket Title
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Enter issue title">
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Category
+                            </label>
+
+                            <select class="form-select">
+
+                                <option>Hardware</option>
+                                <option>Software</option>
+                                <option>Network</option>
+                                <option>Email</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Priority
+                            </label>
+
+                            <select class="form-select">
+
+                                <option>Low</option>
+                                <option>Medium</option>
+                                <option>High</option>
+                                <option>Critical</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mt-3">
+
+                        <label class="form-label">
+                            Description
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            rows="5"
+                            placeholder="Describe your issue..."></textarea>
+
+                    </div>
+
+                    <div class="mt-3">
+
+                        <label class="form-label">
+                            Upload Screenshot
+                        </label>
+
+                        <input
+                            type="file"
+                            class="form-control">
+
+                    </div>
+
+                    <div class="mt-4">
+
+                        <button class="btn btn-success">
+
+                            Submit Ticket
+
+                        </button>
+
+                        <a href="/dashboard/" class="btn btn-secondary">
+
+                            Cancel
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
