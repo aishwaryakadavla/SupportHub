@@ -1,7 +1,20 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
     path("create-ticket/", views.create_ticket, name="create_ticket"),
     path("ticket-list/", views.ticket_list, name="ticket_list"),
+
+    path(
+        "update-ticket/<int:ticket_id>/",
+        views.update_ticket,
+        name="update_ticket"
+    ),
+
+    path(
+        "delete-ticket/<int:ticket_id>/",
+        views.delete_ticket,
+        name="delete_ticket"
+    ),
 ]

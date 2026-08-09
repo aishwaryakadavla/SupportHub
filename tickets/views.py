@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import TicketForm
 from .models import Ticket
 
@@ -26,4 +26,40 @@ def ticket_list(request):
         request,
         "ticket_list.html",
         {"tickets": tickets},
+    )
+
+
+def update_ticket(request, ticket_id):
+
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+
+    if request.method == "POST":
+        form = TicketForm(request.POST, instance=ticket)
+
+        if form.is_valid():
+            form.save()
+            return redirect("ticket_list")
+
+    else:
+        form = TicketForm(instance=ticket)
+
+    return render(
+        request,
+        "update_ticket.html",
+        {"form": form, "ticket": ticket},
+    )
+
+
+def delete_ticket(request, ticket_id):
+
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+
+    if request.method == "POST":
+        ticket.delete()
+        return redirect("ticket_list")
+
+    return render(
+        request,
+        "delete_ticket.html",
+        {"ticket": ticket},
     )

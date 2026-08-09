@@ -24,6 +24,7 @@
                     <th>Priority</th>
                     <th>Status</th>
                     <th>Date</th>
+                    <th>Actions</th>
 
                 </tr>
 
@@ -36,8 +37,11 @@
             <tr>
 
                 <td>{{ ticket.id }}</td>
+
                 <td>{{ ticket.title }}</td>
+
                 <td>{{ ticket.category }}</td>
+
                 <td>{{ ticket.priority }}</td>
 
                 <td>
@@ -70,7 +74,29 @@
 
                 </td>
 
-                <td>{{ ticket.created_at|date:"M d" }}</td>
+                <td>
+                    {{ ticket.created_at|date:"M d, Y" }}
+                </td>
+
+                <td>
+
+                    <a
+                        href="{% url 'update_ticket' ticket.id %}"
+                        class="btn btn-sm btn-warning">
+
+                        Edit
+
+                    </a>
+
+                    <a
+                        href="{% url 'delete_ticket' ticket.id %}"
+                        class="btn btn-sm btn-danger">
+
+                        Delete
+
+                    </a>
+
+                </td>
 
             </tr>
 
@@ -78,7 +104,7 @@
 
             <tr>
 
-                <td colspan="6" class="text-center">
+                <td colspan="7" class="text-center">
 
                     No support tickets found.
 
@@ -98,8 +124,10 @@
 
 <div class="mt-4">
 
-    <a href="/create-ticket/" class="btn btn-primary">
+    <a href="{% url 'create_ticket' %}" class="btn btn-primary">
+
         + Create New Ticket
+
     </a>
 
 </div>
