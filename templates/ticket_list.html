@@ -31,32 +31,62 @@
 
             <tbody>
 
-                <tr>
-                    <td>1001</td>
-                    <td>Printer Not Working</td>
-                    <td>Hardware</td>
-                    <td>High</td>
-                    <td><span class="badge bg-danger">Open</span></td>
-                    <td>Jul 22</td>
-                </tr>
+            {% for ticket in tickets %}
 
-                <tr>
-                    <td>1002</td>
-                    <td>VPN Access</td>
-                    <td>Network</td>
-                    <td>Medium</td>
-                    <td><span class="badge bg-warning text-dark">In Progress</span></td>
-                    <td>Jul 20</td>
-                </tr>
+            <tr>
 
-                <tr>
-                    <td>1003</td>
-                    <td>Outlook Issue</td>
-                    <td>Software</td>
-                    <td>Low</td>
-                    <td><span class="badge bg-success">Closed</span></td>
-                    <td>Jul 18</td>
-                </tr>
+                <td>{{ ticket.id }}</td>
+                <td>{{ ticket.title }}</td>
+                <td>{{ ticket.category }}</td>
+                <td>{{ ticket.priority }}</td>
+
+                <td>
+
+                    {% if ticket.status == "Open" %}
+
+                        <span class="badge bg-danger">
+                            {{ ticket.status }}
+                        </span>
+
+                    {% elif ticket.status == "In Progress" %}
+
+                        <span class="badge bg-warning text-dark">
+                            {{ ticket.status }}
+                        </span>
+
+                    {% elif ticket.status == "Closed" %}
+
+                        <span class="badge bg-success">
+                            {{ ticket.status }}
+                        </span>
+
+                    {% else %}
+
+                        <span class="badge bg-secondary">
+                            {{ ticket.status }}
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>{{ ticket.created_at|date:"M d" }}</td>
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+
+                <td colspan="6" class="text-center">
+
+                    No support tickets found.
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
 
             </tbody>
 
