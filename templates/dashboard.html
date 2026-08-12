@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
 
@@ -14,7 +14,7 @@
         <div class="card text-center shadow">
             <div class="card-body">
                 <h5 class="card-title">Open Tickets</h5>
-                <h2 class="text-primary">3</h2>
+                <h2 class="text-primary">{{ open_tickets }}</h2>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
         <div class="card text-center shadow">
             <div class="card-body">
                 <h5 class="card-title">In Progress</h5>
-                <h2 class="text-warning">2</h2>
+                <h2 class="text-warning">{{ in_progress_tickets }}</h2>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
         <div class="card text-center shadow">
             <div class="card-body">
                 <h5 class="card-title">Closed Tickets</h5>
-                <h2 class="text-success">5</h2>
+                <h2 class="text-success">{{ closed_tickets }}</h2>
             </div>
         </div>
     </div>
@@ -57,17 +57,19 @@
 
     <ul class="list-group">
 
-        <li class="list-group-item">
-            Printer Issue - Open
-        </li>
+        {% for ticket in recent_tickets %}
 
         <li class="list-group-item">
-            Email Problem - In Progress
+            {{ ticket.title }} - {{ ticket.status }}
         </li>
 
+        {% empty %}
+
         <li class="list-group-item">
-            VPN Access - Closed
+            No recent tickets.
         </li>
+
+        {% endfor %}
 
     </ul>
 

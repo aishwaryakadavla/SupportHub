@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+
 from .forms import TicketForm
 from .models import Ticket
 
 
+@login_required
 def create_ticket(request):
 
     if request.method == "POST":
@@ -15,9 +18,14 @@ def create_ticket(request):
     else:
         form = TicketForm()
 
-    return render(request, "create_ticket.html", {"form": form})
+    return render(
+        request,
+        "create_ticket.html",
+        {"form": form}
+    )
 
 
+@login_required
 def ticket_list(request):
 
     tickets = Ticket.objects.all().order_by("-created_at")
@@ -25,10 +33,11 @@ def ticket_list(request):
     return render(
         request,
         "ticket_list.html",
-        {"tickets": tickets},
+        {"tickets": tickets}
     )
 
 
+@login_required
 def update_ticket(request, ticket_id):
 
     ticket = get_object_or_404(Ticket, id=ticket_id)
@@ -46,10 +55,11 @@ def update_ticket(request, ticket_id):
     return render(
         request,
         "update_ticket.html",
-        {"form": form, "ticket": ticket},
+        {"form": form, "ticket": ticket}
     )
 
 
+@login_required
 def delete_ticket(request, ticket_id):
 
     ticket = get_object_or_404(Ticket, id=ticket_id)
@@ -61,5 +71,5 @@ def delete_ticket(request, ticket_id):
     return render(
         request,
         "delete_ticket.html",
-        {"ticket": ticket},
+        {"ticket": ticket}
     )
